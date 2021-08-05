@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>POS-APP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>     
+<body>
+    
+<div class="container-fluid">
+
+    
+     
+<div class="row">
+
+    <label for="input-str" class="label">Input String</label>
+    <input name="input-str"  type="text" id="input-str"  class="form-input"/>
+    <button type="button" id="subBtn" >Submit</button>
+
+
+</div>
+
+<div class="row">
+
+  <p id="outputStr" name="outputStr"></p>
+
+
+</div>
+
+
+
+
+
+
+</div>
+ 
+   
+        
+ 
+<script>
+
+
+    $(document).ready(function(){
+
+      
+
+        $("#subBtn").click(function(){
+
+            const inputStr = $("#input-str").val();
+            var data = {inputStr};
+    
+            console.log(data)
+            $.ajax({
+    
+                type : 'GET',
+                url : "{% url 'mainpage_ajax' %}",
+                dataType : 'json',
+                data : data,
+                success : function(response){
+    
+                    if(response.length == 0){
+                    alert(" NO DATA");
+                    }
+    
+                    else{
+    
+                        console.log(response[0])
+                        $("#outputStr").val(response[0]);
+
+    
+                    }
+                }
+            });
+        });
+    });
+
+
+</script>
+
+
+
+
+
+</body>
+
+
+
+</html>
+
+
