@@ -42,8 +42,20 @@ def mainpage_ajax(request):
         word_tokens = nltk.word_tokenize(input_str)
         word_with_tag = nltk.pos_tag(word_tokens)
 
+        print(word_with_tag)
+
+        word_list= []
+        for o in word_with_tag:
+            print(o)
+            word_list.append({'word':o[0],'pos':o[1]})
+
+        print(word_list)
+
+
+
+
         context = [{
-            'output':word_with_tag
+            'output':word_list
         }]        
      
         return JsonResponse(context, safe = False)
